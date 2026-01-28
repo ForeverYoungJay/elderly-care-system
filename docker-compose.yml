@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: elderly_care_postgres
+    environment:
+      POSTGRES_DB: elderly_care
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "54321:54321"
+    volumes:
+      - elderly_care_pgdata:/var/lib/postgresql/data
+
+volumes:
+  elderly_care_pgdata:
+
