@@ -20,13 +20,27 @@ elderly-care-system/
 
 ## 本地运行（推荐）
 
-### 1) 启动数据库
+### 方式 A：Docker 一键启动（前后端 + DB）
 
 在仓库根目录：
 
 ```bash
 cd elderly-care-system
-docker compose up -d
+docker compose up --build -d
+```
+
+服务地址：
+
+- 前端：`http://localhost:5173`
+- 后端：`http://localhost:3000/api`
+
+### 方式 B：本地开发（分开启动）
+
+#### 1) 启动数据库
+
+```bash
+cd elderly-care-system
+docker compose up -d postgres
 ```
 
 数据库默认：
@@ -37,7 +51,7 @@ docker compose up -d
 - user: `postgres`
 - pass: `postgres`
 
-### 2) 启动后端
+#### 2) 启动后端
 
 ```bash
 cd backend
@@ -54,7 +68,7 @@ npm run start:dev
 - username: `admin`
 - password: `admin123`
 
-### 3) 启动前端
+#### 3) 启动前端
 
 ```bash
 cd ../frontend

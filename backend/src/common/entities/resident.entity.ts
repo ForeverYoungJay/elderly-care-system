@@ -31,7 +31,9 @@ export class Resident extends BaseEntity {
   @Column({ nullable: true })
   dietTaboo?: string;
 
+  @Column({ type: 'uuid', nullable: true })
+  bedId?: string | null;
+
   @ManyToOne(() => Organization, (o) => o.residents, { nullable: true, eager: true })
   organization?: Organization | null;
 }
-

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { CoreModule } from './core/core.module';
 import { SecurityModule } from './security/security.module';
 import { MedicalModule } from './medical/medical.module';
 import { DietModule } from './diet/diet.module';
@@ -24,6 +25,7 @@ import { SeedModule } from './seed/seed.module';
     }),
     AuthModule,
     AdminModule,
+    CoreModule,
     SecurityModule,
     MedicalModule,
     DietModule,
@@ -34,4 +36,3 @@ import { SeedModule } from './seed/seed.module';
   ]
 })
 export class AppModule {}
-

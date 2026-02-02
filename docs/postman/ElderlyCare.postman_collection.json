@@ -1,0 +1,133 @@
+{
+  "info": {
+    "name": "Elderly Care System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "  const data = pm.response.json();",
+              "  if (data.accessToken) {",
+              "    pm.environment.set('token', data.accessToken);",
+              "  }",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Roles",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/admin/roles",
+          "host": ["{{baseUrl}}"],
+          "path": ["admin", "roles"]
+        }
+      }
+    },
+    {
+      "name": "Residents - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/residents?page=1&pageSize=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["residents"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "pageSize", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Safety - Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/security/tasks",
+          "host": ["{{baseUrl}}"],
+          "path": ["security", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "Medical - Vitals",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/medical/vitals",
+          "host": ["{{baseUrl}}"],
+          "path": ["medical", "vitals"]
+        }
+      }
+    },
+    {
+      "name": "Diet - Menus",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/diet/menus",
+          "host": ["{{baseUrl}}"],
+          "path": ["diet", "menus"]
+        }
+      }
+    },
+    {
+      "name": "Nursing - Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/nursing/tasks",
+          "host": ["{{baseUrl}}"],
+          "path": ["nursing", "tasks"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api" },
+    { "key": "token", "value": "" }
+  ]
+}
